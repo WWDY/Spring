@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <bean id="user" class="com.daiju.pojo.User" init-method="initMethod" destroy-method="destMethod">-->
+<!--        <property name="name" value="zhangsan"/>-->
+<!--        <property name="age" value="18"/>-->
+<!--    </bean>-->
+
+    <bean id="userWithProcessor" class="com.daiju.pojo.UserWithProcessor"/>
+
+    <bean id="student" class="com.daiju.pojo.Student"/>
+
+    <bean id="emplooy" class="com.daiju.pojo.Emplooy" p:ENamed="lisi" p:EAge="11"/>
+
+    <!--    引入外部属性文件-->
+    <context:property-placeholder location="classpath:config.properties"/>
+<!--    util名称空间对数组属性的抽取-->
+    <util:list id="list">
+        <value>one</value>
+        <value>two</value>
+        <value>three</value>
+    </util:list>
+    <util:set id="set">
+        <value>1</value>
+        <value>2</value>
+        <value>3</value>
+    </util:set>
+    <util:map id="map">
+        <entry key="${one}" value="one"/>
+        <entry key="${two}" value="two"/>
+        <entry key="${three}" value="three"/>
+    </util:map>
+
+
+    <bean id="attributeInjection" class="com.daiju.pojo.AttributeInjection" p:emplooy-ref="emplooy">
+        <property name="student" ref="student"/>
+        <property name="student.sName" value="zhangsan"/>
+        <property name="student.sAge" value="20"/>
+        <property name="arrays">
+            <array>
+                <value>one</value>
+                <value>two</value>
+                <value>three</value>
+            </array>
+        </property>
+        <property name="lists" ref="list"/>
+        <property name="sets" ref="set"/>
+        <property name="maps" ref="map"/>
+    </bean>
+</beans>
