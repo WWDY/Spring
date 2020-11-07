@@ -42,7 +42,7 @@ http://www.springframework.org/schema/context
     </util:map>
 
 
-    <bean id="attributeInjection" class="com.daiju.pojo.AttributeInjection" p:emplooy-ref="emplooy">
+    <bean id="attributeInjection" class="com.daiju.pojo.AttributeInjection" autowire="byName">
         <property name="student" ref="student"/>
         <property name="student.sName" value="zhangsan"/>
         <property name="student.sAge" value="20"/>
