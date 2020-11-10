@@ -1,13 +1,19 @@
 package com.daiju;
 
+
+import com.daiju.anno.IService;
+import com.daiju.anno.impl.IServiceImpl;
+import com.daiju.config.Config;
 import com.daiju.pojo.AttributeInjection;
 import com.daiju.pojo.Student;
 import com.daiju.pojo.User;
 import com.daiju.pojo.UserWithProcessor;
-import org.junit.*;
-import org.springframework.context.ApplicationContext;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 
@@ -65,5 +71,27 @@ public class MainTest {
         System.out.println("map集合："+attributeInjection.getMaps());
         System.out.println("Emplooy："+attributeInjection.getEmplooy());
         System.out.println("Student："+attributeInjection.getStudent());
+    }
+
+    /**
+     * 注解开发
+     */
+    @Test
+    public void annoTest(){
+        com.daiju.pojo.anno.User user = context.getBean("user", com.daiju.pojo.anno.User.class);
+        System.out.println(user);
+    }
+
+    /**
+     * 完全注解开发
+     */
+    @Test
+    public void allAnnoTest(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+        com.daiju.pojo.anno.User user = context.getBean("user", com.daiju.pojo.anno.User.class);
+        System.out.println(user);
+        IService iServiceImpl = context.getBean("IServiceImpl", IServiceImpl.class);
+        iServiceImpl.addStu();
+
     }
 }

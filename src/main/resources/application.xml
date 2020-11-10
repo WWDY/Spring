@@ -41,6 +41,7 @@ http://www.springframework.org/schema/context
         <entry key="${three}" value="three"/>
     </util:map>
 
+    <context:component-scan base-package="com.daiju"/>
 
     <bean id="attributeInjection" class="com.daiju.pojo.AttributeInjection" autowire="byName">
         <property name="student" ref="student"/>
