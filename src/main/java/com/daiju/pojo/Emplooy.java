@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Emplooy {
+    private Integer eId;
     private String eNamed;
     private int eAge;
 }
